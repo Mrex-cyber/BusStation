@@ -1,0 +1,49 @@
+{
+  "Files": [
+    {
+      "Id": "D:\\Pet-projects\\BusStation\\wwwroot\\admin.html",
+      "PackagePath": "staticwebassets\\admin.html"
+    },
+    {
+      "Id": "D:\\Pet-projects\\BusStation\\wwwroot\\css\\style.css",
+      "PackagePath": "staticwebassets\\css\\style.css"
+    },
+    {
+      "Id": "D:\\Pet-projects\\BusStation\\wwwroot\\index.html",
+      "PackagePath": "staticwebassets\\index.html"
+    },
+    {
+      "Id": "D:\\Pet-projects\\BusStation\\wwwroot\\js\\busesApi.js",
+      "PackagePath": "staticwebassets\\js\\busesApi.js"
+    },
+    {
+      "Id": "D:\\Pet-projects\\BusStation\\wwwroot\\js\\index.js",
+      "PackagePath": "staticwebassets\\js\\index.js"
+    },
+    {
+      "Id": "D:\\Pet-projects\\BusStation\\wwwroot\\js\\routesApi.js",
+      "PackagePath": "staticwebassets\\js\\routesApi.js"
+    },
+    {
+      "Id": "D:\\Pet-projects\\BusStation\\wwwroot\\js\\stationsApi.js",
+      "PackagePath": "staticwebassets\\js\\stationsApi.js"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.BusStation.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.build.BusStation.props",
+      "PackagePath": "build\\BusStation.props"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.buildMultiTargeting.BusStation.props",
+      "PackagePath": "buildMultiTargeting\\BusStation.props"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.buildTransitive.BusStation.props",
+      "PackagePath": "buildTransitive\\BusStation.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

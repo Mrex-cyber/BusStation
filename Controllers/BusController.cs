@@ -31,14 +31,8 @@ namespace BusStation.Controllers
             return Results.Json(bus);
         }
         [HttpPut("api/buses")]
-        public async Task<IResult> OnPutBus()
+        public async Task<IResult> OnPutBus([FromBody]BusInfo busInfo)
         {
-            var json = String.Empty;
-            using (StreamReader reader = new StreamReader(Request.Body))
-            {
-                json = await reader.ReadToEndAsync();
-            }
-            BusInfo busInfo = JsonSerializer.Deserialize<BusInfo>(json)!;
 
             Bus? busDB = _stationContext.Buses.Where(b => b.Id == busInfo.id).FirstOrDefault();
 

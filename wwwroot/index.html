@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Bus Routes</title>
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+  <body>
+    <main>
+        <h1 style="text-align: center;">Find your way!</h1> 
+        <nav>
+            <a href="admin.html">Admin page</a>
+        </nav>
+        <form>
+            <div class="timeContainer">
+                <h2>Check bus position</h2>
+                <label for="timeField">Write time</label>
+                <input type="time" id="timeField"></input>
+            </div>            
+            <input type="text" id="busField" placeholder="Number of the bus"></input>
+            <button type="button" onclick="checkBusTime()">Check</button>
+        </form>
+        <div class="busesContainer">
+          <h2 style="text-align: center;">Buses</h2>
+          <ul id="busesList">
+          </ul>
+      </div>
+        <div class="routesContainer">
+            <h2 style="text-align: center;">Routes</h2>
+            <ul id="routesList">
+            </ul>
+        </div>
+
+        
+    </main>
+    	<script src="js/index.js"></script>
+  </body>
+</html>

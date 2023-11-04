@@ -43,16 +43,9 @@ namespace BusStation.Controllers
 
             return Results.Json(route);
         }
-        [HttpPut("api/routes")]
-        public async Task<IResult> OnPutRoute()
-        {
-            var json = String.Empty;
-            using (StreamReader reader = new StreamReader(Request.Body))
-            {
-                json = await reader.ReadToEndAsync();
-            }
-            RouteInfo routeInfo = JsonSerializer.Deserialize<RouteInfo>(json)!;
-
+        [HttpPut("api/route")]
+        public async Task<IResult> OnPutRoute([FromBody]RouteInfo routeInfo)
+        {           
             Infrastructure.Models.Route? routeDB = _stationContext.Routes.Where(r => r.Id == routeInfo.id).Include(r => r.StationsOnRoute).Include(r => r.Bus).FirstOrDefault();
 
             if (routeDB is null) return Results.NotFound();
@@ -78,6 +71,6 @@ namespace BusStation.Controllers
             return Results.Json(routeDB);
         }
     }
-    public record RouteInfo(int id, string name, string busNumber, int[] stations);
+    public record RouteInfo(int id, string name, int[] stations);
     public record PeopleInfo(string[] entered, string[] exited);
 }

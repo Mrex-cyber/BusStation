@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Bus Routes</title>
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+  <body>
+    <main>
+        <h1 style="text-align: center;">Find your way!</h1>
+        <div class="busesContainer">
+          <div>
+            <h2>Change this bus</h2>
+            <label for="busId">Bus ID</label>
+            <input type="number" id="busId">
+            <label for="busNumber">Bus number</label>
+            <input type="text" id="busNumber">
+            <label for="busCapacity">Bus capacity</label>
+            <input type="number" id="busCapacity">
+            <button id="saveBusButton">Update bus</button>
+          </div>
+            <h2 style="text-align: center;">Buses</h2>
+            <ul id="busesList">
+            </ul>
+        </div>
+        <div class="routesContainer">
+          <div>
+            <h2>Change this route</h2>
+            <label for="routeId">Route ID</label>
+            <input type="number" id="routeId">
+            <label for="routeName">Route name</label>
+            <input type="text" id="routeName"> 
+            <div id="stationsContainer">
+
+            </div>         
+            <button id="changeRouteButton">Update route</button>
+          </div>
+            <h2 style="text-align: center;">Routes</h2>
+            <ul id="routesList">
+            </ul>
+        </div>
+        <button id="addStationButton">Add station</button>
+        <a href="index.html">Go to main</a>
+    </main>
+	  <script src="js/busesApi.js"></script>
+    <script src="js/routesApi.js"></script>
+    <script src="js/stationsApi.js"></script>
+  </body>
+</html>

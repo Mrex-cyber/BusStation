@@ -1,0 +1,70 @@
+html {
+    background-color: bisque;
+}
+
+div {
+    display: block;
+    margin: 10px;
+}
+.busesContainer > ul{
+    display: inline-block;
+    border: solid 2px orange;
+    padding: 10px;
+}
+.busesContainer > ul div {
+    border: solid 2px green;
+    padding: 5px;
+    border-radius: 5px;
+}
+.routesContainer > ul{
+    display: inline-block;
+    border: solid 2px orange;
+    padding: 10px;
+}
+.routesContainer > ul div {
+    border: solid 2px green;
+    padding: 5px;
+    border-radius: 5px;
+}
+form {
+    width: 60%;
+    margin: 0% 5%;
+    border: dotted 1.5px gray;
+    display: block;
+    margin-left: 20%;
+    margin-right: 20%;
+}
+form > input {
+    display: block;
+    width: 50%;
+    margin-left: 25%;
+    margin-right: 25%;
+}
+.timeContainer {
+    display: inline-block;
+    text-align: center;
+    width: 100%;
+}
+.timeContainer > h2 {
+    display: inline-block;
+    width: 100%;
+}
+form > #timeField{
+    width:auto;
+    display: inline;
+    vertical-align: middle;
+}
+form > button {
+    width: 50%;
+    text-align: center;
+    margin-left: 25%;
+    margin-right: 25%;
+}
+
+button {
+    display: inline-block;
+    text-align: center;
+    vertical-align: bottom;
+    font-size: 24px;
+    margin: 5px;
+}
