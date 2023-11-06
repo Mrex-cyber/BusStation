@@ -12,13 +12,32 @@ namespace BusStation.Controllers
         {
             _stationContext = stationContext;
         }
+        /// <summary>
+        /// Gets time from next station of the current bus
+        /// </summary>
+        /// <param name="busNumber"></param>
+        /// <param name="hours"></param>
+        /// <param name="minutes"></param>
+        /// <returns>Changed route</returns>
+        /// <remarks>
+        /// Sample request:
+        /// 
+        ///     PUT /api/time/{busNumber}/{hours}/{minutes}
+        ///     
+        /// </remarks>
+        /// <response code="200">Returns message</response>
+        /// <response code="404">If did not find any route</response>
+        /// <response code="403">Request is bad or you did not send a required header</response>
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
         [HttpGet("api/time/{busNumber}/{hours}/{minutes}")]
         public IResult OnGetBusByTime(string busNumber, int hours, int minutes)
         {
             int allMinutes = (hours - 8) * 60 + minutes; 
 
             Bus? bus = _stationContext.Buses.Where(b => b.Number == busNumber).FirstOrDefault();
-            Infrastructure.Models.Route? route = _stationContext.Routes.Include(r => r.StationsOnRoute).Where(r => r.BusId == bus.Id).FirstOrDefault();
+            Infrastructure.Models.Route? route = _stationContext.Routes.Include(r => r.StationsOnRoute).Where(r => r.BusId == bus!.Id).FirstOrDefault();
             if (route == null || bus == null) return Results.NotFound();
 
 
@@ -64,21 +83,45 @@ namespace BusStation.Controllers
             }
             return Results.Json($"Bus({busNumber}) is {minToStation} minutes from the station \"{stationName}\" station");
         }
+        /// <summary>
+        /// Change route with some "id"
+        /// </summary>        /// 
+        /// <param name="routeName"></param>
+        /// <param name="hours"></param>
+        /// <param name="minutes"></param>
+        /// <param name="peopleInfo"></param>
+        /// <returns>Changed route</returns>
+        /// <remarks>
+        /// Sample request:
+        /// 
+        ///     POST api/time/{routeName}/people/{hours}/{minutes}
+        ///     {               
+        ///         "entered": [],
+        ///         "exited": []
+        ///     }
+        ///     
+        /// </remarks>
+        /// <response code="200">Returns message</response>
+        /// <response code="404">If did not find any route</response>
+        /// <response code="403">Request is bad or you did not send a required header</response>
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
+        
         [HttpPost("api/time/{routeName}/people/{hours}/{minutes}")]
-        public async Task<IResult> CheckPeopleCount(string routeName, int hours, int minutes)
+        public async Task<IResult> CheckPeopleCount(string routeName, int hours, int minutes, [FromBody] PeopleInfo peopleInfo)
         {
-            Infrastructure.Models.Route? route = _stationContext.Routes.Include(r => r.Bus).Include(r => r.StationsOnRoute).Where(r => r.Name == routeName).FirstOrDefault();
+            Infrastructure.Models.Route? route = await _stationContext.Routes.Include(r => r.Bus).Include(r => r.StationsOnRoute).Where(r => r.Name == routeName).FirstOrDefaultAsync();
 
-            if (route is null) return Results.NotFound();
-
-            var json = String.Empty;
-            using (StreamReader reader = new StreamReader(Request.Body))
+            if (route is null || route.Bus is null || peopleInfo is null 
+                || peopleInfo.entered.Length < route.StationsCount 
+                || peopleInfo.exited.Length < route.StationsCount)
             {
-                json = await reader.ReadToEndAsync();
+                return Results.NotFound();
             }
-            PeopleInfo stationsInfo = JsonSerializer.Deserialize<PeopleInfo>(json)!;
-            var entered = stationsInfo.entered;
-            var exited = stationsInfo.exited;
+
+            var entered = peopleInfo.entered;
+            var exited = peopleInfo.exited;
 
 
 
@@ -99,7 +142,6 @@ namespace BusStation.Controllers
             int wayToRight = WayToRight();
             int wayToLeft = WayToLeft();
 
-            bool isRight = true;
             result += fullWay / 2 * (wayToLeft + wayToRight);
             if (fullWay % 2 != 0)
             {
@@ -224,6 +266,6 @@ namespace BusStation.Controllers
             result += allPeopleOnLastWay;
             return Results.Json($"Route({routeName}) have {result} people till this time!");
         }
-        
+        public record PeopleInfo(string[] entered, string[] exited);
     }
 }

@@ -1,0 +1,159 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>BusStation</name>
+    </assembly>
+    <members>
+        <member name="M:BusStation.Controllers.BusController.OnGetBuses(System.String)">
+            <summary>
+            Gets all buses
+            </summary>
+            <param name="requestKey"></param>
+            <returns>List of buses</returns>
+            <remarks>
+            Sample request:
+            
+                GET /api/buses   
+                
+            </remarks>
+            <response code="200">Returns bus object with writen "id"</response>
+            <response code="404">If did not find any bus</response>
+            <response code="403">Request is bad or you did not send a required header</response>
+        </member>
+        <member name="M:BusStation.Controllers.BusController.OnGetBus(System.Int32,System.String)">
+            <summary>
+            Gets bus with some "id"
+            </summary>
+            <param name="id"></param>
+            <param name="requestKey"></param>
+            <returns>One object of buses with some "id"</returns>
+            <remarks>
+            Sample request:
+            
+                GET /api/buses/{id}
+                
+            </remarks>
+            <response code="200">Returns bus object with writen "id"</response>
+            <response code="404">If did not find any bus</response>
+            <response code="403">Request is bad or you did not send a required header</response>
+        </member>
+        <member name="M:BusStation.Controllers.BusController.OnPutBus(BusStation.Controllers.BusInfo,System.String)">
+            <summary>
+            Change bus with some "id"
+            </summary>
+            <param name="busInfo"></param>
+            <param name="requestKey"></param>
+            <returns>Changed bus</returns>
+            <remarks>
+            Sample request:
+            
+                PUT /api/buses/{id}
+                {
+                    "id": 1,
+                    "number": 24,
+                    "capacity": 15
+                }
+                
+            </remarks>
+            <response code="200">Returns changed bus object with writen "id"</response>
+            <response code="404">If did not find any bus</response>
+            <response code="403">Request is bad or you did not send a required header</response>
+        </member>
+        <member name="M:BusStation.Controllers.RouteController.OnGetRoutes(System.String)">
+            <summary>
+            Gets all routes
+            </summary>
+            <param name="requestKey"></param>
+            <returns>List of routes</returns>
+            <remarks>
+            Sample request:
+            
+                GET /api/routes
+                
+            </remarks>
+            <response code="200">Returns bus object with writen "id"</response>
+            <response code="404">If did not find any bus</response>
+            <response code="403">Request is bad or you did not send a required header</response>
+        </member>
+        <member name="M:BusStation.Controllers.RouteController.OnGetRoute(System.Int32,System.String)">
+            <summary>
+            Gets route with some "id"
+            </summary>
+            <param name="id"></param>
+            <param name="requestKey"></param>
+            <returns>One object of routes with some "id"</returns>
+            <remarks>
+            Sample request:
+            
+                GET /api/routes/{id}
+                
+            </remarks>
+            <response code="200">Returns route object with writen "id"</response>
+            <response code="404">If did not find any bus</response>
+            <response code="403">Request is bad or you did not send a required header</response>
+        </member>
+        <member name="M:BusStation.Controllers.RouteController.OnPutRoute(BusStation.Controllers.RouteInfo,System.String)">
+            <summary>
+            Change route with some "id"
+            </summary>
+            <param name="routeInfo"></param>
+            <param name="requestKey"></param>
+            <returns>Changed route</returns>
+            <remarks>
+            Sample request:
+            
+                PUT /api/buses
+                {
+                    "id": 1,
+                    "name": Dravtsi,
+                    "stations": [Object object...]
+                }
+                
+            </remarks>
+            <response code="200">Returns route object with writen "id"</response>
+            <response code="404">If did not find any route</response>
+            <response code="403">Request is bad or you did not send a required header</response>
+        </member>
+        <member name="M:BusStation.Controllers.TimeController.OnGetBusByTime(System.String,System.Int32,System.Int32)">
+            <summary>
+            Gets time from next station of the current bus
+            </summary>
+            <param name="busNumber"></param>
+            <param name="hours"></param>
+            <param name="minutes"></param>
+            <returns>Changed route</returns>
+            <remarks>
+            Sample request:
+            
+                PUT /api/time/{busNumber}/{hours}/{minutes}
+                
+            </remarks>
+            <response code="200">Returns message</response>
+            <response code="404">If did not find any route</response>
+            <response code="403">Request is bad or you did not send a required header</response>
+        </member>
+        <member name="M:BusStation.Controllers.TimeController.CheckPeopleCount(System.String,System.Int32,System.Int32,BusStation.Controllers.TimeController.PeopleInfo)">
+            <summary>
+            Change route with some "id"
+            </summary>        /// 
+            <param name="routeName"></param>
+            <param name="hours"></param>
+            <param name="minutes"></param>
+            <param name="peopleInfo"></param>
+            <returns>Changed route</returns>
+            <remarks>
+            Sample request:
+            
+                POST api/time/{routeName}/people/{hours}/{minutes}
+                {               
+                    "entered": [],
+                    "exited": []
+                }
+                
+            </remarks>
+            <response code="200">Returns message</response>
+            <response code="404">If did not find any route</response>
+            <response code="403">Request is bad or you did not send a required header</response>
+        </member>
+    </members>
+</doc>

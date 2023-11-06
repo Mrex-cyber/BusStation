@@ -3,6 +3,7 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace BusStation.Infrastructure.Models
 {
+#pragma warning disable CS1591
     public class StationContext : DbContext
     {
         public DbSet<Bus> Buses { get; set; } = null!;
@@ -147,4 +148,5 @@ namespace BusStation.Infrastructure.Models
             
         }
     }
+#pragma warning restore CS1591
 }
